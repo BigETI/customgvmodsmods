@@ -1,0 +1,5 @@
+package com.bigeti.rocketbootsmod;
+
+public class ClientProxy {
+
+}

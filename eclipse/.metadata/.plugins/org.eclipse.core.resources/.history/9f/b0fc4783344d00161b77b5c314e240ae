@@ -1,0 +1,28 @@
+package com.bigeti.rocketbootsmod;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+public class EventHandler {
+
+	@SubscribeEvent
+	public void onLivingHurtEvent(LivingHurtEvent event) {
+		if (event.entity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.entity;
+			if (event.source == DamageSource.fall) {
+				ItemStack armor = player.getCurrentArmor(0);
+				if (armor != null) {
+					if (armor.getItem().equals(Main.rocketBootsItem)) {
+						event.ammount = 0.0f;
+					}
+						
+				}
+			}
+		}
+	}
+
+}

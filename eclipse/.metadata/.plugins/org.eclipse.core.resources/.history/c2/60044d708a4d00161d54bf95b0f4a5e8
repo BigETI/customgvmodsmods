@@ -1,0 +1,17 @@
+{
+	"rocketBootsFullThrottle": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.fullThrottle",
+		"sounds": [ {"name": "rocketBootsFullThrottle", "stream": false} ]
+	},
+	"rocketBootsHalfThrottle": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.halfThrottle",
+		"sounds": [ {"name": "rocketBootsHalfThrottle", "stream": false} ]
+	},
+	"rocketBootsLessThrottle": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.lessThrottle",
+		"sounds": [ {"name": "rocketBootsLessThrottle", "stream": false} ]
+	}
+}

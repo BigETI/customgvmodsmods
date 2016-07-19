@@ -1,0 +1,31 @@
+package com.bigeti.rocketbootsmod;
+
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
+public class ServerProxy implements ICommonProxy {
+
+	@Override
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	@EventHandler
+	public void init(FMLInitializationEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

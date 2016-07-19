@@ -1,0 +1,14 @@
+package com.bigeti.rocketbootsmod;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+public class EventHandler {
+	
+	@SubscribeEvent
+	public void onLivingHurtEvent(LivingHurtEvent event) {
+		
+	}
+
+}

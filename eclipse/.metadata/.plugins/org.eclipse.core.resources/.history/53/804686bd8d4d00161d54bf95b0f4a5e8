@@ -1,0 +1,64 @@
+{
+	"rocketBootsFullThrottle": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.fullThrottle",
+		"sounds": [
+			{
+				"name": "rocketBootsFullThrottle_1",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_2",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_3",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_4",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_5",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_6",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_7",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_8",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_9",
+				"stream": false
+			}
+		]
+	},
+	"rocketBootsHalfThrottle": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.halfThrottle",
+		"sounds": [
+			{
+				"name": "rocketBootsHalfThrottle",
+				"stream": false
+			}
+		]
+	},
+	"rocketBootsLessThrottle": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.lessThrottle",
+		"sounds": [
+			{
+				"name": "rocketBootsLessThrottle",
+				"stream": false
+			}
+		]
+	}
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.Mod.Instance"/>
+<fullyQualifiedTypeName name="com.bigeti.rocketbootsmod.items.RocketBootsItem"/>
+<fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
+<fullyQualifiedTypeName name="net.minecraft.item.Item"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.registry.GameRegistry"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemArmor"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+<fullyQualifiedTypeName name="net.minecraft.world.World"/>
+<fullyQualifiedTypeName name="net.minecraft.potion.Potion"/>
+<fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.gameevent.InputEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.client.registry.ClientRegistry"/>
+<fullyQualifiedTypeName name="net.minecraft.client.settings.KeyBinding"/>
+<fullyQualifiedTypeName name="net.minecraftforge.event.entity.living.LivingHurtEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.eventhandler.SubscribeEvent"/>
+<fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.event.FMLPreInitializationEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.event.FMLInitializationEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.event.FMLPostInitializationEvent"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.Mod.EventHandler"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.SidedProxy"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.player.EntityPlayer"/>
+<fullyQualifiedTypeName name="net.minecraftforge.common.MinecraftForge"/>
+<fullyQualifiedTypeName name="cpw.mods.fml.common.FMLCommonHandler"/>
+<fullyQualifiedTypeName name="net.minecraft.util.DamageSource"/>
+<fullyQualifiedTypeName name="net.minecraftforge.event.entity.living.LivingFallEvent"/>
+<fullyQualifiedTypeName name="net.minecraft.potion.PotionEffect"/>
+<fullyQualifiedTypeName name="net.minecraftforge.client.event.sound.SoundLoadEvent"/>
+</qualifiedTypeNameHistroy>

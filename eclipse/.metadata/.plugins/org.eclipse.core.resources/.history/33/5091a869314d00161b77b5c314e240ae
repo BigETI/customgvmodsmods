@@ -1,0 +1,23 @@
+package com.bigeti.rocketbootsmod;
+
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
+/**
+ * Common proxy interface
+ * @author Ethem Kurt
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+public interface ICommonProxy {
+
+	/**
+	 * @param e
+	 */
+	public void preInit(FMLPreInitializationEvent e);
+
+	public void init(FMLInitializationEvent e);
+
+	public void postInit(FMLPostInitializationEvent e);
+}

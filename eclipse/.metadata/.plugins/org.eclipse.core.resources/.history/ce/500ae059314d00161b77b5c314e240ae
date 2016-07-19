@@ -1,0 +1,16 @@
+package com.bigeti.rocketbootsmod;
+
+public interface ICommonProxy {
+
+
+@EventHandler
+	    public void preInit(FMLPreInitializationEvent e);
+
+
+@EventHandler
+	    public void init(FMLInitializationEvent e);
+
+
+@EventHandler
+	    public void postInit(FMLPostInitializationEvent e);
+}
