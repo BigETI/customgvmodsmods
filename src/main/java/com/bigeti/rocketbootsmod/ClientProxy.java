@@ -1,10 +1,20 @@
 package com.bigeti.rocketbootsmod;
 
-import cpw.mods.fml.common.Mod.EventHandler;
+import com.bigeti.interfaces.ICommonProxy;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.MinecraftForge;
 
+/**
+ * Client proxy class
+ * 
+ * @author Ethem Kurt
+ * @version 1.0.1
+ * @since 1.0.0
+ */
 public class ClientProxy implements ICommonProxy {
 
 	/*
@@ -16,8 +26,9 @@ public class ClientProxy implements ICommonProxy {
 	 */
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		// TODO Auto-generated method stub
-
+		ClientEventHandler handler = new ClientEventHandler();
+		MinecraftForge.EVENT_BUS.register(handler);
+		FMLCommonHandler.instance().bus().register(handler);
 	}
 
 	/*
@@ -28,9 +39,7 @@ public class ClientProxy implements ICommonProxy {
 	 * FMLInitializationEvent)
 	 */
 	@Override
-	public void init(FMLInitializationEvent e) {
-		// TODO Auto-generated method stub
-
+	public void init(FMLInitializationEvent event) {
 	}
 
 	/*
@@ -41,9 +50,7 @@ public class ClientProxy implements ICommonProxy {
 	 * .FMLPostInitializationEvent)
 	 */
 	@Override
-	public void postInit(FMLPostInitializationEvent e) {
-		// TODO Auto-generated method stub
-
+	public void postInit(FMLPostInitializationEvent event) {
 	}
 
 }

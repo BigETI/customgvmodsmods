@@ -1,0 +1,26 @@
+package com.bigeti.rocketbootsmod;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+/**
+ * Client event handler class
+ * 
+ * @author Ethem Kurt
+ * @version 1.0.1
+ * @since 1.0.1
+ */
+@SideOnly(Side.CLIENT)
+public class ClientEventHandler {
+
+	/**
+	 * Tick event
+	 * @param event Event
+	 */
+	@SubscribeEvent
+	public void onTick(TickEvent event) {
+
+	}
+}

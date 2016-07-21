@@ -1,0 +1,74 @@
+package com.bigeti.rocketbootsmod;
+
+import java.util.HashSet;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.item.ItemStack;
+
+/**
+ * Client event handler class
+ * 
+ * @author Ethem Kurt
+ * @version 1.0.1
+ * @since 1.0.1
+ */
+@SideOnly(Side.CLIENT)
+public class ClientEventHandler {
+	
+	/**
+	 * Activated rocket boots
+	 */
+	private final HashSet<EntityClientPlayerMP> activated_rocket_boots = new HashSet<EntityClientPlayerMP>();
+	
+	/**
+	 * Activate rocket boots effect
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	private void activateRocketBoots(EntityClientPlayerMP player) {
+		if (!(activated_rocket_boots.contains(player))) {
+			System.out.println("activateBoots");
+			activated_rocket_boots.add(player);
+			player.playSound("rocketbootsmod:rocketBootsActivated", 1.0f, 1.0f);
+		}
+	}
+
+	/**
+	 * Deactivate rocket boots effect
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	private void deactivateRocketBoots(EntityClientPlayerMP player) {
+		if (activated_rocket_boots.contains(player)) {
+			System.out.println("deactivateBoots");
+			activated_rocket_boots.remove(player);
+		}
+	}
+
+	/**
+	 * Tick event
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@SubscribeEvent
+	public void onTick(TickEvent event) {
+		if (Minecraft.getMinecraft() != null) {
+			ItemStack armor = Minecraft.getMinecraft().thePlayer.getCurrentArmor(0);
+			if (armor != null) {
+				if (armor.getItem().equals(Main.rocketBootsItem))
+					activateRocketBoots(Minecraft.getMinecraft().thePlayer);
+				else
+					deactivateRocketBoots(Minecraft.getMinecraft().thePlayer);
+			} else
+				deactivateRocketBoots(Minecraft.getMinecraft().thePlayer);
+		}
+	}
+}

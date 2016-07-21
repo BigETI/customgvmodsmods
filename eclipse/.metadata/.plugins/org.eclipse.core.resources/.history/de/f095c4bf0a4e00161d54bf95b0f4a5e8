@@ -1,0 +1,6 @@
+package com.bigeti.betterfurnacemod;
+
+@SideOnly(Side.CLIENT)
+public class BetterFurnaceUI {
+
+}

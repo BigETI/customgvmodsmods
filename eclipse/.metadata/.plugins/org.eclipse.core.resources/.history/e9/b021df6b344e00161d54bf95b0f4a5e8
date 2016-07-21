@@ -1,0 +1,75 @@
+package com.bigeti.betterfurnacemod;
+
+/**
+ * Main class
+ * 
+ * @author Ethem Kurt (BigETI)
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+@Mod(modid = Main.MODID, name = Main.MODNAME, version = Main.VERSION)
+public class Main {
+
+	/**
+	 * Mod ID
+	 */
+	public static final String MODID = "betterfurnacemod";
+
+	/**
+	 * Mod name
+	 */
+	public static final String MODNAME = "Better furnace";
+
+	/**
+	 * Mod version
+	 */
+	public static final String VERSION = "1.0.0";
+
+	/**
+	 * Sided proxy
+	 */
+	@SidedProxy(clientSide = "com.bigeti.betterfurnacemod.ClientProxy", serverSide = "com.bigeti.betterfurnacemod.ServerProxy")
+	public static ICommonProxy proxy;
+
+	/**
+	 * Pre-Init
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@cpw.mods.fml.common.Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		Block.blocksList[Block.oreIron.blockID] = null;
+		oreIron = new YOUR_BLOCK_CLASS(1000, Material.rock);
+		GameRegistry.registerBlock(oreIron, "oreIron");
+		MinecraftForge.setBlockHarvestLevel(oreIron, "pickaxe", 1);
+		Block.blocksList[Block.oreIron.blockID] = oreIron;
+		OreDictionary.registerOre("oreIron", new ItemStack(oreIron));
+		
+		GameRegistry.registerBlock(new BlockBetterFurnace(false), "minecraft.furnace");
+		GameRegistry.registerBlock(new BlockBetterFurnace(true), "minecraft.lit_furnace");
+		proxy.preInit(event);
+	}
+
+	/**
+	 * Init mod
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@cpw.mods.fml.common.Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.init(event);
+	}
+
+	/**
+	 * Post-Init
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@cpw.mods.fml.common.Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		proxy.postInit(event);
+	}
+}

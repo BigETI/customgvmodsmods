@@ -1,0 +1,91 @@
+package com.bigeti.betterfurnacemod;
+
+import com.bigeti.interfaces.ICommonProxy;
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.ExistingSubstitutionException;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+
+/**
+ * Main class
+ * 
+ * @author Ethem Kurt (BigETI)
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+@Mod(modid = Main.MODID, name = Main.MODNAME, version = Main.VERSION)
+public class Main {
+
+	/**
+	 * Mod ID
+	 */
+	public static final String MODID = "betterfurnacemod";
+
+	/**
+	 * Mod name
+	 */
+	public static final String MODNAME = "Better furnace";
+
+	/**
+	 * Mod version
+	 */
+	public static final String VERSION = "1.0.0";
+
+	/**
+	 * Sided proxy
+	 */
+	@SidedProxy(clientSide = "com.bigeti.betterfurnacemod.ClientProxy", serverSide = "com.bigeti.betterfurnacemod.ServerProxy")
+	public static ICommonProxy proxy;
+
+	/**
+	 * Pre-Init
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@cpw.mods.fml.common.Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		try {
+			System.out.println("Beep 1");
+			Item furnace_item = ItemBlock.getItemById(61);
+			System.out.println("Beep 2");
+			GameRegistry.addSubstitutionAlias("minecraft:furnace", GameRegistry.Type.BLOCK, new BlockBetterFurnace(false));
+			System.out.println("Beep 3");
+			GameRegistry.addSubstitutionAlias("minecraft:lit_furnace", GameRegistry.Type.BLOCK, new BlockBetterFurnace(true));
+			System.out.println("Beep 4");
+			GameRegistry.registerItem(furnace_item, "furnace", "minecraft");
+			System.out.println("Beep 5");
+		} catch (ExistingSubstitutionException e) {
+			e.printStackTrace();
+		}
+		proxy.preInit(event);
+	}
+
+	/**
+	 * Init mod
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@cpw.mods.fml.common.Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.init(event);
+	}
+
+	/**
+	 * Post-Init
+	 * 
+	 * @param event
+	 *            Event
+	 */
+	@cpw.mods.fml.common.Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		proxy.postInit(event);
+	}
+}

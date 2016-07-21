@@ -1,0 +1,15 @@
+package com.bigeti.betterfurnacemod;
+
+import net.minecraft.block.BlockFurnace;
+
+public class BlockBetterFurnace extends BlockFurnace {
+
+	/**
+	 * Constructor
+	 * @param p_i45407_1_ Active
+	 */
+	public BlockBetterFurnace(boolean p_i45407_1_) {
+		super(p_i45407_1_);
+	}
+
+}

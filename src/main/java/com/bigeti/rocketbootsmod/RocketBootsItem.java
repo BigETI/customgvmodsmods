@@ -1,5 +1,8 @@
 package com.bigeti.rocketbootsmod;
 
+import java.util.HashSet;
+
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -7,6 +10,8 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -23,15 +28,36 @@ import net.minecraftforge.client.event.sound.SoundEvent;
  * Rocket boots item class
  * 
  * @author Ethem Kurt
- * @version 1.0.0
+ * @version 1.0.1
  * @since 1.0.0
  */
 public class RocketBootsItem extends ItemArmor {
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.item.Item#onItemUse(net.minecraft.item.ItemStack, net.minecraft.entity.player.EntityPlayer, net.minecraft.world.World, int, int, int, int, float, float, float)
+	 */
+	@Override
+	public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_,
+			int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_) {
+		boolean ret = super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_8_,
+				p_77648_9_, p_77648_10_);
+		System.out.println("onItemUse isRemote = " + p_77648_3_.isRemote);
+		return ret;
+	}
+
+	/**
+	 * Unlocalized name
+	 */
 	public final static String UNLOCALIZED_NAME = "rocketBootsItem";
 
+	/**
+	 * Texture name
+	 */
 	public final static String TEXTURE_NAME = "rocketboots";
 
+	/**
+	 * Original jump factor
+	 */
 	public float original_jump_movement_factor = 0.0f;
 
 	/**
@@ -43,11 +69,24 @@ public class RocketBootsItem extends ItemArmor {
 		setTextureName(Main.MODID + ":" + UNLOCALIZED_NAME);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.item.Item#getArmorTexture(net.minecraft.item.ItemStack,
+	 * net.minecraft.entity.Entity, int, java.lang.String)
+	 */
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		return Main.MODID + ":textures/armor/" + TEXTURE_NAME + ".png";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.item.Item#onArmorTick(net.minecraft.world.World,
+	 * net.minecraft.entity.player.EntityPlayer, net.minecraft.item.ItemStack)
+	 */
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		if (world.isRemote) {
@@ -57,20 +96,28 @@ public class RocketBootsItem extends ItemArmor {
 				boolean mf = false;
 				boolean ft = false;
 				ItemStack armor = player.getCurrentArmor(0);
-				if (armor != null) {
+				if ((armor != null) && (!(player_sp.capabilities.isCreativeMode))) {
 					if (armor.getItem().equals(Main.rocketBootsItem)) {
 						GameSettings gs = Minecraft.getMinecraft().gameSettings;
 						if (gs.keyBindSneak.getIsKeyPressed()) {
-							player_sp.addVelocity(0.0, 0.05, 0.0);
-							player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.05f, 0.5f);
+							if (player_sp.isOnLadder())
+								player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.05f, 0.5f);
+							else {
+								player_sp.addVelocity(0.0, 0.075, 0.0);
+								player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.1f, 1.0f);
+							}
 						} else if (gs.keyBindJump.getIsKeyPressed()) {
-							player_sp.addVelocity(0.0, 0.125, 0.0);
-							ft = true;
+							if (!(player_sp.isOnLadder())) {
+								player_sp.addVelocity(0.0, 0.1, 0.0);
+								ft = true;
+							}
 						} else {
-							player_sp.addVelocity(0.0, 0.075, 0.0);
-							player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.1f, 1.0f);
+							if (!(player_sp.isOnLadder()))
+								player_sp.addVelocity(0.0, 0.05, 0.0);
+							player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.05f, 0.5f);
 						}
-						if ((!gs.keyBindSneak.getIsKeyPressed())
+						if ((!gs.keyBindSneak.getIsKeyPressed()) && (!(player_sp.onGround))
+								&& (!(player_sp.isOnLadder()))
 								&& (gs.keyBindForward.getIsKeyPressed() || gs.keyBindBack.getIsKeyPressed()
 										|| gs.keyBindLeft.getIsKeyPressed() || gs.keyBindRight.getIsKeyPressed()))
 							ft = true;
@@ -81,9 +128,10 @@ public class RocketBootsItem extends ItemArmor {
 				}
 				if (original_jump_movement_factor == 0.0f)
 					original_jump_movement_factor = player.jumpMovementFactor;
-				player.jumpMovementFactor = (mf ? (original_jump_movement_factor * 5.0f)
+				player.jumpMovementFactor = (mf ? (original_jump_movement_factor * 2.5f)
 						: original_jump_movement_factor);
 			}
 		}
 	}
+
 }

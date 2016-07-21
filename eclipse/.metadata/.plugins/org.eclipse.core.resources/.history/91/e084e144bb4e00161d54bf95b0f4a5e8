@@ -1,0 +1,188 @@
+package com.bigeti.rocketbootsmod;
+
+import java.util.HashSet;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.MovingSoundMinecartRiding;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.sound.SoundEvent;
+
+/**
+ * Rocket boots item class
+ * 
+ * @author Ethem Kurt
+ * @version 1.0.1
+ * @since 1.0.0
+ */
+public class RocketBootsItem extends ItemArmor {
+
+	/**
+	 * Unlocalized name
+	 */
+	public final static String UNLOCALIZED_NAME = "rocketBootsItem";
+
+	/**
+	 * Texture name
+	 */
+	public final static String TEXTURE_NAME = "rocketboots";
+
+	/**
+	 * Original jump factor
+	 */
+	public float original_jump_movement_factor = 0.0f;
+
+	private final HashSet<EntityPlayer> activated_rocket_boots = new HashSet<EntityPlayer>();
+
+	private static boolean CLIENT_SUPPORT;
+
+	{
+		try {
+			Class.forName("net.minecraft.client.entity.EntityPlayerSP");
+			CLIENT_SUPPORT = true;
+		} catch (ClassNotFoundException e) {
+			CLIENT_SUPPORT = false;
+		}
+	}
+
+	/**
+	 * Constructor
+	 */
+	public RocketBootsItem() {
+		super(ArmorMaterial.DIAMOND, 0, 3);
+		setUnlocalizedName(UNLOCALIZED_NAME);
+		setTextureName(Main.MODID + ":" + UNLOCALIZED_NAME);
+	}
+
+	/**
+	 * Activate rocket boots effect
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	private void activateRocketBoots(EntityPlayer player) {
+		if (!(activated_rocket_boots.contains(player))) {
+			System.out.println("activateBoots");
+			activated_rocket_boots.add(player);
+			player.playSound("rocketbootsmod:rocketBootsActivated", 1.0f, 1.0f);
+		}
+	}
+
+	/**
+	 * Deactivate rocket boots effect
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	private void deactivateRocketBoots(EntityPlayer player) {
+		if (activated_rocket_boots.contains(player)) {
+			System.out.println("deactivateBoots");
+			activated_rocket_boots.remove(player);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.item.Item#getArmorTexture(net.minecraft.item.ItemStack,
+	 * net.minecraft.entity.Entity, int, java.lang.String)
+	 */
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+		return Main.MODID + ":textures/armor/" + TEXTURE_NAME + ".png";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.item.Item#onArmorTick(net.minecraft.world.World,
+	 * net.minecraft.entity.player.EntityPlayer, net.minecraft.item.ItemStack)
+	 */
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+		if (world.isRemote) {
+			if (player instanceof EntityPlayerSP) {
+				EntityPlayerSP player_sp = (EntityPlayerSP) player;
+
+				boolean mf = false;
+				boolean ft = false;
+				ItemStack armor = player.getCurrentArmor(0);
+				if ((armor != null) && (!(player_sp.capabilities.isCreativeMode))) {
+					if (armor.getItem().equals(Main.rocketBootsItem)) {
+						GameSettings gs = Minecraft.getMinecraft().gameSettings;
+						if (gs.keyBindSneak.getIsKeyPressed()) {
+							if (player_sp.isOnLadder())
+								player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.05f, 0.5f);
+							else {
+								player_sp.addVelocity(0.0, 0.075, 0.0);
+								player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.1f, 1.0f);
+							}
+						} else if (gs.keyBindJump.getIsKeyPressed()) {
+							if (!(player_sp.isOnLadder())) {
+								player_sp.addVelocity(0.0, 0.1, 0.0);
+								ft = true;
+							}
+						} else {
+							if (!(player_sp.isOnLadder()))
+								player_sp.addVelocity(0.0, 0.05, 0.0);
+							player_sp.playSound("rocketbootsmod:rocketBootsHalfThrottle", 0.05f, 0.5f);
+						}
+						if ((!gs.keyBindSneak.getIsKeyPressed()) && (!(player_sp.onGround))
+								&& (!(player_sp.isOnLadder()))
+								&& (gs.keyBindForward.getIsKeyPressed() || gs.keyBindBack.getIsKeyPressed()
+										|| gs.keyBindLeft.getIsKeyPressed() || gs.keyBindRight.getIsKeyPressed()))
+							ft = true;
+						if (ft)
+							player_sp.playSound("rocketbootsmod:rocketBootsFullThrottle", 0.2f, 2.0f);
+						mf = true;
+					}
+				}
+				if (original_jump_movement_factor == 0.0f)
+					original_jump_movement_factor = player.jumpMovementFactor;
+				player.jumpMovementFactor = (mf ? (original_jump_movement_factor * 2.5f)
+						: original_jump_movement_factor);
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.item.Item#onUpdate(net.minecraft.item.ItemStack,
+	 * net.minecraft.world.World, net.minecraft.entity.Entity, int, boolean)
+	 */
+	@Override
+	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_,
+			boolean p_77663_5_) {
+		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
+		if (p_77663_2_.isRemote) {
+			if (p_77663_3_ instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer) p_77663_3_;
+				ItemStack armor = player.getCurrentArmor(0);
+				if (armor != null) {
+					if (armor.getItem().equals(Main.rocketBootsItem))
+						activateRocketBoots(player);
+				} else
+					deactivateRocketBoots(player);
+			}
+		}
+	}
+
+}

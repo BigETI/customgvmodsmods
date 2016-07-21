@@ -67,12 +67,34 @@
 			}
 		]
 	},
-	"rocketBootsLessThrottle": {
+	"rocketBootsActivated": {
 		"category": "player",
-		"subtitle": "rocketbootsmod.subtitle.lessThrottle",
+		"subtitle": "rocketbootsmod.subtitle.activated",
 		"sounds": [
 			{
-				"name": "rocketBootsLessThrottle",
+				"name": "rocketBootsActivated_1",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsActivated_2",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsActivated_3",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsActivated_4",
+				"stream": false
+			}
+		]
+	},
+	"rocketBootsDeactivated": {
+		"category": "player",
+		"subtitle": "rocketbootsmod.subtitle.deactivated",
+		"sounds": [
+			{
+				"name": "rocketBootsDeactivated",
 				"stream": false
 			}
 		]

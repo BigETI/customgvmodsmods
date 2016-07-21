@@ -1,0 +1,37 @@
+package com.bigeti.rocketbootsmod;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+
+/**
+ * Event handler class
+ * @author Ethem Kurt
+ * @version 1.0.1
+ * @since 1.0.0
+ */
+public class EventHandler {
+
+	/**
+	 * Living fall event
+	 * @param event Event
+	 */
+	@SubscribeEvent
+	public void onLivingFall(LivingFallEvent event) {
+		if (event.entityLiving instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			ItemStack armor = player.getCurrentArmor(0);
+			if (armor != null) {
+				if (armor.getItem().equals(Main.rocketBootsItem)) {
+					event.distance = 0.0f;
+					System.out.println("lel");
+				}
+			}
+		}
+	}
+
+}

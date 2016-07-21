@@ -1,0 +1,9 @@
+package com.bigeti.betterfurnacemod;
+
+import cpw.mods.fml.relauncher.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+
+@SideOnly(Side.CLIENT)
+public class BetterFurnaceUI {
+
+}

@@ -1,0 +1,77 @@
+{
+	"rocketBootsFullThrottle": {
+		"category": "rocketboots",
+		"subtitle": "rocketbootsmod.subtitle.fullThrottle",
+		"sounds": [
+			{
+				"name": "rocketBootsFullThrottle_1",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_2",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_3",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_4",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_5",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_6",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_7",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_8",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsFullThrottle_9",
+				"stream": false
+			}
+		]
+	},
+	"rocketBootsHalfThrottle": {
+		"category": "rocketboots",
+		"subtitle": "rocketbootsmod.subtitle.halfThrottle",
+		"sounds": [
+			{
+				"name": "rocketBootsHalfThrottle_1",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsHalfThrottle_2",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsHalfThrottle_3",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsHalfThrottle_4",
+				"stream": false
+			},
+			{
+				"name": "rocketBootsHalfThrottle_5",
+				"stream": false
+			}
+		]
+	},
+	"rocketBootsActivate": {
+	   "category": "rocketboots",
+	   "subtitle": "rocketbootsmod.subtitle.activate",
+	   "sounds": [
+	   {"name": "rocketBootsActivate", "stream": false}
+	   ]
+	}
+}

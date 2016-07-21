@@ -1,0 +1,272 @@
+package com.bigeti.betterfurnacemod;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFurnace;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+public class BlockBetterFurnace extends BlockFurnace {
+
+	/**
+	 * Constructor
+	 * 
+	 * @param p_i45407_1_
+	 *            Active
+	 */
+	public BlockBetterFurnace(boolean p_i45407_1_) {
+		super(p_i45407_1_);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.BlockFurnace#onBlockActivated(net.minecraft.world.
+	 * World, int, int, int, net.minecraft.entity.player.EntityPlayer, int,
+	 * float, float, float)
+	 */
+	@Override
+	public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_,
+			EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
+//		boolean ret = super.onBlockActivated(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_,
+//				p_149727_6_, p_149727_7_, p_149727_8_, p_149727_9_);
+		BetterFurnaceUI ui = new BetterFurnaceUI(this);
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.BlockFurnace#onBlockAdded(net.minecraft.world.World,
+	 * int, int, int)
+	 */
+	@Override
+	public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_) {
+		super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+		System.out.println("DEBUG: onBlockAdded");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.BlockFurnace#onBlockPlacedBy(net.minecraft.world.
+	 * World, int, int, int, net.minecraft.entity.EntityLivingBase,
+	 * net.minecraft.item.ItemStack)
+	 */
+	@Override
+	public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_,
+			EntityLivingBase p_149689_5_, ItemStack p_149689_6_) {
+		super.onBlockPlacedBy(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_, p_149689_5_, p_149689_6_);
+		System.out.println("DEBUG: onBlockPlacedBy");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.BlockContainer#onBlockEventReceived(net.minecraft.
+	 * world.World, int, int, int, int, int)
+	 */
+	@Override
+	public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_,
+			int p_149696_5_, int p_149696_6_) {
+		boolean ret = super.onBlockEventReceived(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_5_,
+				p_149696_6_);
+		System.out.println("DEBUG: onBlockEventReceived");
+		return ret;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.Block#onBlockDestroyedByPlayer(net.minecraft.world.
+	 * World, int, int, int, int)
+	 */
+	@Override
+	public void onBlockDestroyedByPlayer(World p_149664_1_, int p_149664_2_, int p_149664_3_, int p_149664_4_,
+			int p_149664_5_) {
+		super.onBlockDestroyedByPlayer(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, p_149664_5_);
+		System.out.println("DEBUG: onBlockDestroyedByPlayer");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onNeighborBlockChange(net.minecraft.world.
+	 * World, int, int, int, net.minecraft.block.Block)
+	 */
+	@Override
+	public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_,
+			Block p_149695_5_) {
+		super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_);
+		System.out.println("DEBUG: onNeighborBlockChange");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.Block#onBlockDestroyedByExplosion(net.minecraft.world
+	 * .World, int, int, int, net.minecraft.world.Explosion)
+	 */
+	@Override
+	public void onBlockDestroyedByExplosion(World p_149723_1_, int p_149723_2_, int p_149723_3_, int p_149723_4_,
+			Explosion p_149723_5_) {
+		super.onBlockDestroyedByExplosion(p_149723_1_, p_149723_2_, p_149723_3_, p_149723_4_, p_149723_5_);
+		System.out.println("DEBUG: onBlockDestroyedByExplosion");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onEntityWalking(net.minecraft.world.World,
+	 * int, int, int, net.minecraft.entity.Entity)
+	 */
+	@Override
+	public void onEntityWalking(World p_149724_1_, int p_149724_2_, int p_149724_3_, int p_149724_4_,
+			Entity p_149724_5_) {
+		super.onEntityWalking(p_149724_1_, p_149724_2_, p_149724_3_, p_149724_4_, p_149724_5_);
+		System.out.println("DEBUG: onEntityWalking");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onBlockPlaced(net.minecraft.world.World,
+	 * int, int, int, int, float, float, float, int)
+	 */
+	@Override
+	public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_,
+			float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_) {
+		System.out.println("DEBUG: onBlockPlaced");
+		return super.onBlockPlaced(p_149660_1_, p_149660_2_, p_149660_3_, p_149660_4_, p_149660_5_, p_149660_6_,
+				p_149660_7_, p_149660_8_, p_149660_9_);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onBlockClicked(net.minecraft.world.World,
+	 * int, int, int, net.minecraft.entity.player.EntityPlayer)
+	 */
+	@Override
+	public void onBlockClicked(World p_149699_1_, int p_149699_2_, int p_149699_3_, int p_149699_4_,
+			EntityPlayer p_149699_5_) {
+		super.onBlockClicked(p_149699_1_, p_149699_2_, p_149699_3_, p_149699_4_, p_149699_5_);
+		System.out.println("DEBUG: onBlockClicked");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.Block#onEntityCollidedWithBlock(net.minecraft.world.
+	 * World, int, int, int, net.minecraft.entity.Entity)
+	 */
+	@Override
+	public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_,
+			Entity p_149670_5_) {
+		super.onEntityCollidedWithBlock(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_, p_149670_5_);
+		System.out.println("DEBUG: onEntityCollidedWithBlock");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.Block#onPostBlockPlaced(net.minecraft.world.World,
+	 * int, int, int, int)
+	 */
+	@Override
+	public void onPostBlockPlaced(World p_149714_1_, int p_149714_2_, int p_149714_3_, int p_149714_4_,
+			int p_149714_5_) {
+		super.onPostBlockPlaced(p_149714_1_, p_149714_2_, p_149714_3_, p_149714_4_, p_149714_5_);
+		System.out.println("DEBUG: onPostBlockPlaced");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onFallenUpon(net.minecraft.world.World,
+	 * int, int, int, net.minecraft.entity.Entity, float)
+	 */
+	@Override
+	public void onFallenUpon(World p_149746_1_, int p_149746_2_, int p_149746_3_, int p_149746_4_, Entity p_149746_5_,
+			float p_149746_6_) {
+		super.onFallenUpon(p_149746_1_, p_149746_2_, p_149746_3_, p_149746_4_, p_149746_5_, p_149746_6_);
+		System.out.println("DEBUG: onFallenUpon");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.Block#onBlockHarvested(net.minecraft.world.World,
+	 * int, int, int, int, net.minecraft.entity.player.EntityPlayer)
+	 */
+	@Override
+	public void onBlockHarvested(World p_149681_1_, int p_149681_2_, int p_149681_3_, int p_149681_4_, int p_149681_5_,
+			EntityPlayer p_149681_6_) {
+		super.onBlockHarvested(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_, p_149681_5_, p_149681_6_);
+		System.out.println("DEBUG: onBlockHarvested");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.minecraft.block.Block#onBlockPreDestroy(net.minecraft.world.World,
+	 * int, int, int, int)
+	 */
+	@Override
+	public void onBlockPreDestroy(World p_149725_1_, int p_149725_2_, int p_149725_3_, int p_149725_4_,
+			int p_149725_5_) {
+		super.onBlockPreDestroy(p_149725_1_, p_149725_2_, p_149725_3_, p_149725_4_, p_149725_5_);
+		System.out.println("DEBUG: onBlockPreDestroy");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onBlockExploded(net.minecraft.world.World,
+	 * int, int, int, net.minecraft.world.Explosion)
+	 */
+	@Override
+	public void onBlockExploded(World world, int x, int y, int z, Explosion explosion) {
+		super.onBlockExploded(world, x, y, z, explosion);
+		System.out.println("DEBUG: onBlockExploded");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onPlantGrow(net.minecraft.world.World,
+	 * int, int, int, int, int, int)
+	 */
+	@Override
+	public void onPlantGrow(World world, int x, int y, int z, int sourceX, int sourceY, int sourceZ) {
+		super.onPlantGrow(world, x, y, z, sourceX, sourceY, sourceZ);
+		System.out.println("DEBUG: onPlantGrow");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.minecraft.block.Block#onNeighborChange(net.minecraft.world.
+	 * IBlockAccess, int, int, int, int, int, int)
+	 */
+	@Override
+	public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ) {
+		super.onNeighborChange(world, x, y, z, tileX, tileY, tileZ);
+		System.out.println("DEBUG: onNeighborChange");
+	}
+
+}

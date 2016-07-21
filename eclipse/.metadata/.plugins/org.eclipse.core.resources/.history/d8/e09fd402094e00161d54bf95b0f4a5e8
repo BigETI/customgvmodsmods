@@ -1,0 +1,7 @@
+package com.bigeti.betterfurnacemod;
+
+import net.minecraft.item.crafting.FurnaceRecipes;
+
+public class EventHandler {
+	//
+}
